@@ -65,7 +65,8 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<p id="init-lacking">Apologies! Your web browser lacks required capabilities. Please consider upgrading it or switching to a more modern web browser.</p>
 		<p id="init-loading">Initializing. Please wait&hellip;<br /><progress></progress></p>
 	</div>
-	<div id="store-area" hidden><tw-storydata name="Sphere" startnode="43" creator="Twine" creator-version="2.0.11" ifid="0EC08542-3444-4BDE-A528-63B8349A4E5D" format="SugarCube" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+	<div id="store-area" hidden><tw-storydata name="Sphere" startnode="37" creator="Twine" creator-version="2.0.11" ifid="0EC08542-3444-4BDE-A528-63B8349A4E5D" format="SugarCube" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+
 
 
 
@@ -134,6 +135,7 @@ $(function () {
 
 		
 });
+
 
 
 
@@ -1163,31 +1165,25 @@ It felt good having someone rely on you for once though.
 [[Go to the cornfield]]
 [[You don&#39;t have time for this, go to the shop|Go right.]]
 
-(live: 1000ms)[
-	(if: $head_size &gt; 150)[(print: &quot;Perfect!&quot;)]
-]
 
-&lt;script&gt;
-var url =&quot;https://www.dropbox.com/s/qxf31cqq0ca6ung/Vanilla%20-%20Indigo%20Pulse.mp3?raw=1&quot;;
+&lt;&lt;script&gt;&gt;
+window.url_factory  = &quot;/Audio/Oni_Room/Factory - Sounds.mp3&quot;
+window.url_pc_music = &quot;/Audio/Oni_Room/Vanilla - Indigo Pulse.mp3&quot;
+window.url_pc_type  = &quot;/Audio/Oni_Room/Keyboard.wav&quot;
 
-
-url_factory  = &quot;/Audio/Oni_Room/Factory - Sounds.mp3&quot;
-url_pc_music = &quot;/Audio/Oni_Room/Vanilla - Indigo Pulse.mp3&quot;
-url_pc_type  = &quot;/Audio/Oni_Room/Keyboard.wav&quot;
-
-var sound = new Howl({
+window.sound = new Howl({
   src: [url_factory]
 });
 
-factory_id = sound.play();
+window.factory_id = sound.play();
 sound.volume(0.1, factory_id);
 
-var sound_pc =  new Howl({
+window.sound_pc =  new Howl({
   src: [url_pc_music]
 });
-pc_music_id = sound_pc.play();
+window.pc_music_id = sound_pc.play();
 
-var sound_type =  new Howl({
+window.sound_type =  new Howl({
   src: [url_pc_type]
 });
 
@@ -1195,24 +1191,24 @@ var sound_type =  new Howl({
 sound_pc.pos(0.5,3,1, pc_music_id)
 sound_pc.volume(0.4, pc_music_id);
 
-&lt;/script&gt;
+&lt;&lt;/script&gt;&gt;
 
-&lt;script&gt;
+&lt;&lt;script&gt;&gt;
 window.onscroll = function(e){
 	if($(window).scrollTop() &gt; 380) {
-		pc_type_id = sound_type.play();
-		sound_type.pos(0.5,1,1, pc_type_id)
-		sound_pc.pos(0.5,2,1, pc_music_id)
+		window.pc_type_id = sound_type.play();
+		window.sound_type.pos(0.5,1,1, pc_type_id)
+		window.sound_pc.pos(0.5,2,1, pc_music_id)
 
-		sound_pc.fade(0.3, 0.8, 200, pc_music_id)
-		sound_type.fade(0.3, 1, 200, pc_type_id)
-		sound.fade(0.1, 0.2,  factory_id);
+		window.sound_pc.fade(0.3, 0.8, 200, pc_music_id)
+		window.sound_type.fade(0.3, 1, 200, pc_type_id)
+		window.sound.fade(0.1, 0.2,  factory_id);
 
 		window.onscroll = null;
 		
 	}
 }
-&lt;/script&gt;</tw-passagedata>
+&lt;&lt;/script&gt;&gt;</tw-passagedata>
 <tw-passagedata pid="47" name="Wake up" tags="" position="1497,1663">{(set: $EnergyA to 10)
 (set: $EnergyB to 10)
 }
@@ -2433,10 +2429,10 @@ $(function(){
 		if(window.is_scanning){
 			if(scanning_time &gt;= max_time*0.95){
 				
-				window.bar.animate(1.0)
+				window.bar.animate(1.0,{duration: 500})
 				window.clearInterval(interval_id);
 				setTimeout(function(){
-				window.SugarCube.state.display(&quot;Recharge transport credits&quot;)}, 500);
+				window.SugarCube.state.display(&quot;Recharge transport credits&quot;)}, 1000);
 			}
 			else{
 				scanning_time += 1
