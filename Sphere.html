@@ -11,7 +11,7 @@
 
 <tw-story></tw-story>
 
-<tw-storydata name="Sphere" startnode="42" creator="Twine" creator-version="2.0.11" ifid="0EC08542-3444-4BDE-A528-63B8349A4E5D" format="Harlowe" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
+<tw-storydata name="Sphere" startnode="1" creator="Twine" creator-version="2.0.11" ifid="0EC08542-3444-4BDE-A528-63B8349A4E5D" format="Harlowe" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">
 
 
 
@@ -19,49 +19,11 @@
 
 
 
+</style><script role="script" id="twine-user-script" type="text/twine-javascript">
 
 
 
-</style><script role="script" id="twine-user-script" type="text/twine-javascript">var _src="https://howlerjs.com/assets/howler.js/dist/howler.min.js"
 
-$(function () {
-    $.getScript(_src, function (data, textStatus, jqxhr) {
-        console.log(data); // Data returned
-        console.log(textStatus); // Success
-        console.log(jqxhr.status); // 200
-        console.log("Typed was loaded.");
-    });
-	
-		var url_track = "https://trackingjs.com/bower/tracking.js/build/tracking-min.js"
-		var face_url = "https://trackingjs.com/bower/tracking.js/build/data/face-min.js"
-		var eye_url = "https://trackingjs.com/bower/tracking.js/build/data/eye-min.js"
-
-		$.getScript(url_track, function (data, textStatus, jqxhr) {
-        console.log(data); // Data returned
-        console.log(textStatus); // Success
-        console.log(jqxhr.status); // 200
-        console.log("Typed was loaded.");
-				$.getScript(face_url, function (data, textStatus, jqxhr){
-					console.log(data); // Data returned
-					console.log(textStatus); // Success
-					console.log(jqxhr.status); // 200
-					console.log("Typed was loaded.");
-    		});
-
-				$.getScript(eye_url, function (data, textStatus, jqxhr) {
-					console.log(data); // Data returned
-					console.log(textStatus); // Success
-					console.log(jqxhr.status); // 200
-					console.log("Typed was loaded.");
-    	});
-    });
-
-		
-	
-		
-
-		
-});
 
 
 
@@ -1086,94 +1048,7 @@ He pushes you along and his drone drops a small wrench in your pocket as it chir
 Oni... always needing favours done.
 It felt good having someone rely on you for once though.
 [[Go to the cornfield]]
-[[You don&#39;t have time for this, go to the shop|Go right.]]
-(live: 1000ms)[
-	(if: $head_size &gt; 150)[(print: &quot;Perfect!&quot;)]
-]
-&lt;style&gt;
-  video, canvas {
-    margin-left: 230px;
-    margin-top: 120px;
-    position: absolute;
-  }&lt;/style&gt;
-  
-&lt;video id=&quot;video&quot; width=&quot;320&quot; height=&quot;240&quot; preload autoplay loop muted&gt;&lt;/video&gt;
-&lt;canvas id=&quot;canvas&quot; width=&quot;320&quot; height=&quot;240&quot;&gt;&lt;/canvas&gt;
-
-
-&lt;script&gt;
-setTimeout(function(){
-	 console.log(&quot;Executing me yay!&quot;);
-     var video = document.getElementById(&#39;video&#39;);
-      var canvas = document.getElementById(&#39;canvas&#39;);
-      var context = canvas.getContext(&#39;2d&#39;);
-      var tracker = new tracking.ObjectTracker([&#39;face&#39;,&#39;eye&#39;]);
-      tracker.setInitialScale(4);
-      tracker.setStepSize(2);
-      tracker.setEdgesDensity(0.1);
-      tracking.track(&#39;#video&#39;, tracker, { camera: true });
-	  
-	  tracker.on(&#39;track&#39;, function(event) {
-		context.clearRect(0, 0, canvas.width, canvas.height);
-		event.data.forEach(function(rect) {
-		context.strokeStyle = &#39;#a64ceb&#39;;
-		context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-		window.playerSize= rect.width;
-		context.font = &#39;11px Helvetica&#39;;
-		context.fillStyle = &quot;#fff&quot;;
-		context.fillText(&#39;x: &#39; + rect.x + &#39;px&#39;, rect.x + rect.width + 5, rect.y + 11);
-		context.fillText(&#39;y: &#39; + rect.y + &#39;px&#39;, rect.x + rect.width + 5, rect.y + 22);
-		});
-	  });
-}, 5000);
-
-&lt;/script&gt;
-&lt;script&gt;
-var url =&quot;https://www.dropbox.com/s/qxf31cqq0ca6ung/Vanilla%20-%20Indigo%20Pulse.mp3?raw=1&quot;;
-
-
-url_factory  = &quot;/Audio/Oni_Room/Factory - Sounds.mp3&quot;
-url_pc_music = &quot;/Audio/Oni_Room/Vanilla - Indigo Pulse.mp3&quot;
-url_pc_type  = &quot;/Audio/Oni_Room/Keyboard.wav&quot;
-
-var sound = new Howl({
-  src: [url_factory]
-});
-
-factory_id = sound.play();
-sound.volume(0.1, factory_id);
-
-var sound_pc =  new Howl({
-  src: [url_pc_music]
-});
-pc_music_id = sound_pc.play();
-
-var sound_type =  new Howl({
-  src: [url_pc_type]
-});
-
-
-sound_pc.pos(0.5,3,1, pc_music_id)
-sound_pc.volume(0.4, pc_music_id);
-
-&lt;/script&gt;
-
-&lt;script&gt;
-window.onscroll = function(e){
-	if($(window).scrollTop() &gt; 380) {
-		pc_type_id = sound_type.play();
-		sound_type.pos(0.5,1,1, pc_type_id)
-		sound_pc.pos(0.5,2,1, pc_music_id)
-
-		sound_pc.fade(0.3, 0.8, 200, pc_music_id)
-		sound_type.fade(0.3, 1, 200, pc_type_id)
-		sound.fade(0.1, 0.2,  factory_id);
-
-		window.onscroll = null;
-		
-	}
-}
-&lt;/script&gt;</tw-passagedata>
+[[You don&#39;t have time for this, go to the shop|Go right.]]</tw-passagedata>
 <tw-passagedata pid="47" name="Wake up" tags="" position="1497,1663">{(set: $EnergyA to 10)
 (set: $EnergyB to 10)
 }
@@ -2249,27 +2124,6 @@ They laughed. &quot;His children are dead.&quot;
 
 &quot;Look, city girl.. I don&#39;t know why you&#39;re here but if you&#39;re looking for Ishmael. Go down the middle tunnel and get me my knife. I dropped it there yesterday. Be careful of the steam though! The red valve, remember that (set: $valve to &quot;yes&quot;)
 [[Go back.|Old train station.]]]</tw-passagedata>
-<tw-passagedata pid="93" name="JS_Cam" tags="" position="160,3821">&lt;script&gt;
-     var video = document.getElementById(&#39;video&#39;);
-      var canvas = document.getElementById(&#39;canvas&#39;);
-      var context = canvas.getContext(&#39;2d&#39;);
-      var tracker = new tracking.ObjectTracker(&#39;face&#39;);
-      tracker.setInitialScale(4);
-      tracker.setStepSize(2);
-      tracker.setEdgesDensity(0.1);
-      tracking.track(&#39;#video&#39;, tracker, { camera: true });
-      tracker.on(&#39;track&#39;, function(event) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        event.data.forEach(function(rect) {
-          context.strokeStyle = &#39;#a64ceb&#39;;
-          context.strokeRect(rect.x, rect.y, rect.width, rect.height);
-          context.font = &#39;11px Helvetica&#39;;
-          context.fillStyle = &quot;#fff&quot;;
-          context.fillText(&#39;x: &#39; + rect.x + &#39;px&#39;, rect.x + rect.width + 5, rect.y + 11);
-          context.fillText(&#39;y: &#39; + rect.y + &#39;px&#39;, rect.x + rect.width + 5, rect.y + 22);
-        });
-      });
-&lt;/script&gt;</tw-passagedata>
 </tw-storydata>
 
 
